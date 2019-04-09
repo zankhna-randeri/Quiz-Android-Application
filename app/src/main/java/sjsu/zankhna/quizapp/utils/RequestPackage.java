@@ -68,6 +68,12 @@ public class RequestPackage implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(this.apiEndPoint);
+        dest.writeString(this.method);
+        dest.writeInt(this.params.size());
+        for (Map.Entry<String, String> entry : this.params.entrySet()) {
+            dest.writeString(entry.getKey());
+            dest.writeString(entry.getValue());
+        }
     }
 }
