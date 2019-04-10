@@ -6,6 +6,8 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
+import sjsu.zankhna.quizapp.utils.Constants;
 
 public interface ILoadQuiz {
 
@@ -18,5 +20,8 @@ public interface ILoadQuiz {
             .build();
 
     @GET(API_URL)
-    Call<List<Question>> loadQuestions();
+    Call<List<Question>> loadQuestions(@Query(Constants.PARAM_AMOUNT) int amount,
+                                       @Query(Constants.PARAM_CATEGORY) int category,
+                                       @Query(Constants.PARAM_DIFFICULTY) String difficulty,
+                                       @Query(Constants.PARAM_TYPE) String type);
 }
