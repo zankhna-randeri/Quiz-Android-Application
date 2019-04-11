@@ -5,24 +5,27 @@ import android.os.Parcelable;
 
 import java.util.Arrays;
 
+/**
+ * Question POJO that maps to API response
+ */
 public class Question implements Parcelable {
 
     private String category;
     private String type;
     private String difficulty;
     private String question;
-    private String correctAnswer;
-    private String[] incorrectAnswers;
+    private String correct_answer;
+    private String[] incorrect_answers;
 
 
     public Question(String category, String type, String difficulty, String question,
-                    String correctAnswer, String[] incorrectAnswers) {
+                    String correct_answer, String[] incorrect_answers) {
         this.category = category;
         this.type = type;
         this.difficulty = difficulty;
         this.question = question;
-        this.correctAnswer = correctAnswer;
-        this.incorrectAnswers = incorrectAnswers;
+        this.correct_answer = correct_answer;
+        this.incorrect_answers = incorrect_answers;
     }
 
     public String getCategory() {
@@ -57,20 +60,20 @@ public class Question implements Parcelable {
         this.question = question;
     }
 
-    public String getCorrectAnswer() {
-        return correctAnswer;
+    public String getCorrect_answer() {
+        return correct_answer;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setCorrect_answer(String correct_answer) {
+        this.correct_answer = correct_answer;
     }
 
-    public String[] getIncorrectAnswers() {
-        return incorrectAnswers;
+    public String[] getIncorrect_answers() {
+        return incorrect_answers;
     }
 
-    public void setIncorrectAnswers(String[] incorrectAnswers) {
-        this.incorrectAnswers = incorrectAnswers;
+    public void setIncorrect_answers(String[] incorrect_answers) {
+        this.incorrect_answers = incorrect_answers;
     }
 
     @Override
@@ -80,8 +83,8 @@ public class Question implements Parcelable {
                 ", type='" + type + '\'' +
                 ", difficulty='" + difficulty + '\'' +
                 ", question='" + question + '\'' +
-                ", correctAnswer='" + correctAnswer + '\'' +
-                ", incorrectAnswers=" + Arrays.toString(incorrectAnswers) +
+                ", correct_answer='" + correct_answer + '\'' +
+                ", incorrect_answers=" + Arrays.toString(incorrect_answers) +
                 '}';
     }
 
@@ -90,12 +93,8 @@ public class Question implements Parcelable {
         this.type = in.readString();
         this.difficulty = in.readString();
         this.question = in.readString();
-        this.correctAnswer = in.readString();
-        int size = in.readInt();
-        this.incorrectAnswers = new String[size];
-        for (int i = 0; i < size; i++) {
-            incorrectAnswers[i] = in.readString();
-        }
+        this.correct_answer = in.readString();
+        this.incorrect_answers = in.createStringArray();
     }
 
     public static final Creator<Question> CREATOR = new Creator<Question>() {
@@ -121,9 +120,7 @@ public class Question implements Parcelable {
         dest.writeString(this.type);
         dest.writeString(this.difficulty);
         dest.writeString(this.question);
-        dest.writeString(this.correctAnswer);
-        for (String answer : incorrectAnswers) {
-            dest.writeString(answer);
-        }
+        dest.writeString(this.correct_answer);
+        dest.writeStringArray(this.incorrect_answers);
     }
 }
