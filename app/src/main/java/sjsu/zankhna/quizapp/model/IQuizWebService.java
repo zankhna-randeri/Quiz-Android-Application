@@ -1,7 +1,5 @@
 package sjsu.zankhna.quizapp.model;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -20,8 +18,8 @@ public interface ILoadQuiz {
             .build();
 
     @GET(API_URL)
-    Call<List<Question>> loadQuestions(@Query(Constants.PARAM_AMOUNT) int amount,
-                                       @Query(Constants.PARAM_CATEGORY) int category,
-                                       @Query(Constants.PARAM_DIFFICULTY) String difficulty,
-                                       @Query(Constants.PARAM_TYPE) String type);
+    Call<RequestQuestionResponse> loadQuestions(@Query(Constants.PARAM_AMOUNT) int amount,
+                                            @Query(Constants.PARAM_CATEGORY) int category,
+                                            @Query(Constants.PARAM_DIFFICULTY) String difficulty,
+                                            @Query(Constants.PARAM_TYPE) String type);
 }
