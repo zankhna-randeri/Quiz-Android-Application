@@ -8,21 +8,14 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
-import sjsu.zankhna.quizapp.model.ILoadQuiz;
+import sjsu.zankhna.quizapp.model.IQuizWebService;
 import sjsu.zankhna.quizapp.model.Question;
+import sjsu.zankhna.quizapp.model.RequestQuestionResponse;
 import sjsu.zankhna.quizapp.utils.Constants;
 import sjsu.zankhna.quizapp.utils.NetworkHelper;
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p>
- * TODO: Customize class - update intent actions, extra parameters and static
- * helper methods.
- */
 public class RequestQuestionService extends IntentService {
 
     private final String TAG = "RequestQuestionService";
@@ -34,26 +27,10 @@ public class RequestQuestionService extends IntentService {
     }
 
     /**
-     * Starts this service to perform action Foo with the given parameters. If
+     * Starts this service to perform action RequestQuestion with the given parameters. If
      * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
      */
-    // TODO: Customize helper method
-    public static void startActionFoo(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, RequestQuestionService.class);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        context.startService(intent);
-    }
-
-    /**
-     * Starts this service to perform action Baz with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void requestQuestions(Context context, String param1, String param2) {
+    public static void startActionRequestQuestions(Context context, String param1, String param2) {
         Intent intent = new Intent(context, RequestQuestionService.class);
         intent.putExtra(EXTRA_PARAM1, param1);
         context.startService(intent);
@@ -73,15 +50,25 @@ public class RequestQuestionService extends IntentService {
      */
     private void handleActionRequestQuestion(String param1) {
         if (NetworkHelper.hasNetworkAccess(getApplicationContext())) {
-            ILoadQuiz quizWebService = ILoadQuiz.retrofit.create(ILoadQuiz.class);
-            Call<List<Question>> call = quizWebService.loadQuestions();
+            IQuizWebService quizWebService = IQuizWebService.retrofit.create(IQuizWebService.class);
+            Call<RequestQuestionResponse> call = quizWebService.loadQuestions(
+                    Constants.VALUE_AMOUNT,
+                    Constants.VALUE_CATEGORY,
+                    Constants.VALUE_DIFFICULTY,
+                    Constants.VALUE_TYPE);
+
             try {
-                ArrayList<Question> questions = (ArrayList<Question>) call.execute().body();
-                Intent responseIntent = new Intent(Constants.RESPONSE_QUESTION_SERVICE);
-                responseIntent.putParcelableArrayListExtra(Constants.PAYLOAD_QUESTION_SERVICE, questions);
-                LocalBroadcastManager broadcastManager = LocalBroadcastManager
-                        .getInstance(getApplicationContext());
-                broadcastManager.sendBroadcast(responseIntent);
+                RequestQuestionResponse response = call.execute().body();
+                if (response.getResponse_code() == Constants.RESPONSE_SUCCESS) {
+                    ArrayList<Question> questions = response.getResults();
+                    Intent responseIntent = new Intent(Constants.RESPONSE_QUESTION_SERVICE);
+                    responseIntent.putParcelableArrayListExtra(Constants.PAYLOAD_QUESTION_SERVICE, questions);
+                    LocalBroadcastManager broadcastManager = LocalBroadcastManager
+                            .getInstance(getApplicationContext());
+                    broadcastManager.sendBroadcast(responseIntent);
+                } else {
+                    //TODO : Handle other response codes
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.e(TAG, "handleActionRequestQuestion: " + e.getMessage());
