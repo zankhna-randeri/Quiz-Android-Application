@@ -3,9 +3,10 @@ package sjsu.zankhna.quizapp;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -44,13 +45,36 @@ public class LoadQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_quiz);
 
+
         isNetworkConnected = NetworkHelper.hasNetworkAccess(this);
         if (isNetworkConnected) {
             // TODO: Intent service call
 //            Intent intent = new Intent(this, RequestQuestionService.class);
 //            startService(intent);
-            RequestQuestionService.requestQuestions(LoadQuizActivity.this,
+            RequestQuestionService.startActionRequestQuestions(LoadQuizActivity.this,
                     "", "");
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(getApplicationContext()).
+                registerReceiver(questionResponseReceiver,
+                        new IntentFilter(Constants.RESPONSE_QUESTION_SERVICE));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(getApplicationContext()).
+                unregisterReceiver(questionResponseReceiver);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(getApplicationContext()).
+                unregisterReceiver(questionResponseReceiver);
     }
 }
