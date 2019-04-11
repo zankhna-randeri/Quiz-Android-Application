@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 import sjsu.zankhna.quizapp.utils.Constants;
 
-public interface ILoadQuiz {
+public interface IQuizWebService {
 
     String BASE_URL = "https://opentdb.com/";
     String API_URL = "api.php";
