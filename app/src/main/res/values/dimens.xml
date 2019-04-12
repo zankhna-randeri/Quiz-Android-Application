@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_small">18sp</dimen>
+    <dimen name="font_medium">24sp</dimen>
+
+    <dimen name="padding_20">20dp</dimen>
+
+    <dimen name="margin_15">15dp</dimen>
+
+    <dimen name="stroke_width">2dp</dimen>
+</resources>
