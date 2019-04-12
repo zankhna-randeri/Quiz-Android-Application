@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QuizApp</string>
+    <string name="txt_btn_play">Play</string>
+    <string name="txt_btn_score">Your Scores</string>
 </resources>
