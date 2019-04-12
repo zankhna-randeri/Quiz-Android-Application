@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,17 +10,38 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" />
 
-    <Button
-        android:id="@+id/btn_play"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_btn_play" />
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_play"
-        android:text="@string/txt_btn_score" />
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/color_question_bg"
+            android:padding="@dimen/padding_20"
+            android:text="@string/txt_btn_play"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_medium"
+            app:fontFamily="@font/font_body" />
+
+        <Button
+            android:id="@+id/btn_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_weight="1"
+            android:background="@color/color_question_bg"
+            android:padding="@dimen/padding_20"
+            android:text="@string/txt_btn_score"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_medium"
+            app:fontFamily="@font/font_body" />
+    </LinearLayout>
 
 </RelativeLayout>
