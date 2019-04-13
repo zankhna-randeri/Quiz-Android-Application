@@ -25,4 +25,5 @@ public class Constants {
     // App constants
     public static final String RESPONSE_QUESTION_SERVICE = "responseQuestionService";
     public static final String PAYLOAD_QUESTION_SERVICE = "payloadQuestionService";
+    public static String EXTRA_CATEGORY_ID;
 }
