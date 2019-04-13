@@ -2,4 +2,14 @@
     <string name="app_name">QuizApp</string>
     <string name="txt_btn_play">Let\'s Play!</string>
     <string name="txt_btn_score">Your Scores</string>
+
+    <!--Categories-->
+    <string name="txt_category_gk">General \nKnowledge</string>
+    <string name="txt_category_books">Books</string>
+    <string name="txt_category_science_nature">Science &amp; \nNature</string>
+    <string name="txt_category_computer">Computers</string>
+    <string name="txt_category_sports">Sports</string>
+    <string name="txt_category_geography">Geography</string>
+    <string name="txt_category_history">History</string>
+    <string name="txt_category_music">Music</string>
 </resources>
