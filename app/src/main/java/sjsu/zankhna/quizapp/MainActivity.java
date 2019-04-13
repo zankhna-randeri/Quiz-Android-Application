@@ -1,19 +1,19 @@
 package sjsu.zankhna.quizapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Context activityContext;
 
@@ -36,12 +36,15 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         activityContext = MainActivity.this;
         setUpToolbar();
+        play.setOnClickListener(this);
+        score.setOnClickListener(this);
     }
 
     private void setUpToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        title.setText(getString(R.string.app_name));
     }
 
     @Override
@@ -50,7 +53,21 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 break;
+            default:
+                return false;
         }
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_play:
+                startActivity(new Intent(activityContext, CategoryActivity.class));
+                break;
+            case R.id.btn_score:
+                startActivity(new Intent(activityContext, ScoreActivity.class));
+                break;
+        }
     }
 }
