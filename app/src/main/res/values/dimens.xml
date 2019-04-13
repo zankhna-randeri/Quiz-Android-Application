@@ -3,6 +3,8 @@
     <dimen name="font_small">18sp</dimen>
     <dimen name="font_medium">24sp</dimen>
 
+    <dimen name="padding_5">12dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
     <dimen name="padding_20">20dp</dimen>
 
     <dimen name="margin_15">15dp</dimen>
