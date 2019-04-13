@@ -1,9 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CategoryActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        layout="@layout/toolbar_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:scrollbars="none">
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="true">
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/btn_gk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@mipmap/gk"
+                    android:drawablePadding="@dimen/padding_8"
+                    android:padding="@dimen/padding_5"
+                    android:text="@string/txt_category_gk"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/avenir_lt_std_book" />
+
+                <Button
+                    android:id="@+id/btn_books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@mipmap/books"
+                    android:drawablePadding="@dimen/padding_8"
+                    android:padding="@dimen/padding_5"
+                    android:text="@string/txt_category_music"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/avenir_lt_std_book" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/btn_science"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@mipmap/science"
+                    android:drawablePadding="@dimen/padding_8"
+                    android:padding="@dimen/padding_5"
+                    android:text="@string/txt_category_science_nature"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/avenir_lt_std_book" />
+
+                <Button
+                    android:id="@+id/btn_computer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@mipmap/computer"
+                    android:drawablePadding="@dimen/padding_8"
+                    android:padding="@dimen/padding_5"
+                    android:text="@string/txt_category_computer"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/avenir_lt_std_book" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/btn_sports"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@mipmap/sports"
+                    android:drawablePadding="@dimen/padding_8"
+                    android:padding="@dimen/padding_5"
+                    android:text="@string/txt_category_sports"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/avenir_lt_std_book" />
+
+                <Button
+                    android:id="@+id/btn_geography"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@mipmap/geography"
+                    android:drawablePadding="@dimen/padding_8"
+                    android:padding="@dimen/padding_5"
+                    android:text="@string/txt_category_geography"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/avenir_lt_std_book" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/btn_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@mipmap/history"
+                    android:drawablePadding="@dimen/padding_8"
+                    android:padding="@dimen/padding_5"
+                    android:text="@string/txt_category_history"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/avenir_lt_std_book" />
+
+                <Button
+                    android:id="@+id/btn_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@mipmap/music"
+                    android:drawablePadding="@dimen/padding_8"
+                    android:padding="@dimen/padding_5"
+                    android:text="@string/txt_category_music"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/avenir_lt_std_book" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+</RelativeLayout>
