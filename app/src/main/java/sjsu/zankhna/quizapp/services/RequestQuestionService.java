@@ -19,44 +19,46 @@ import sjsu.zankhna.quizapp.utils.NetworkHelper;
 public class RequestQuestionService extends IntentService {
 
     private final String TAG = "RequestQuestionService";
-    private static final String EXTRA_PARAM1 = "sjsu.zankhna.quizapp.services.extra.PARAM1";
+    private static final String EXTRA_CATEGORY_ID = "categoryId";
 
 
     public RequestQuestionService() {
         super("RequestQuestionService");
     }
 
+
     /**
      * Starts this service to perform action RequestQuestion with the given parameters. If
      * the service is already performing a task this action will be queued.
+     *
+     * @param context    Context of activity that will invoke the service
+     * @param categoryId The integer id of current category
      */
-    public static void startActionRequestQuestions(Context context, String param1, String param2) {
+    public static void startActionRequestQuestions(Context context, int categoryId) {
         Intent intent = new Intent(context, RequestQuestionService.class);
-        intent.putExtra(EXTRA_PARAM1, param1);
+        intent.putExtra(EXTRA_CATEGORY_ID, categoryId);
         context.startService(intent);
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
-            final String action = intent.getAction();
-            final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-            handleActionRequestQuestion(param1);
+            final int categoryId = intent.getIntExtra(EXTRA_CATEGORY_ID, -1);
+            handleActionRequestQuestion(categoryId);
         }
     }
 
     /**
+     * Invokes webservice to fetch questions from webservice and parses response. After receiving response,
+     * result is returned to caller activity.
      *
+     * @param categoryId The integer id of current category
      */
-    private void handleActionRequestQuestion(String param1) {
+    private void handleActionRequestQuestion(int categoryId) {
         if (NetworkHelper.hasNetworkAccess(getApplicationContext())) {
             IQuizWebService quizWebService = IQuizWebService.retrofit.create(IQuizWebService.class);
-            Call<RequestQuestionResponse> call = quizWebService.loadQuestions(
-                    Constants.VALUE_AMOUNT,
-                    Constants.VALUE_CATEGORY,
-                    Constants.VALUE_DIFFICULTY,
-                    Constants.VALUE_TYPE);
-
+            Call<RequestQuestionResponse> call = quizWebService.loadQuestionsOfAnyDifficulty(
+                    Constants.VALUE_AMOUNT, categoryId, Constants.VALUE_TYPE);
             try {
                 RequestQuestionResponse response = call.execute().body();
                 if (response.getResponse_code() == Constants.RESPONSE_SUCCESS) {
