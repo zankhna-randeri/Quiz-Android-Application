@@ -37,4 +37,7 @@ public class QuizViewModel extends ViewModel {
         this.questions = questions;
     }
 
+    public int totalQuestions() {
+        return questions.size();
+    }
 }
