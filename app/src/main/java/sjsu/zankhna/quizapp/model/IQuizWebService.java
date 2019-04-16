@@ -19,12 +19,12 @@ public interface IQuizWebService {
 
     @GET(API_URL)
     Call<RequestQuestionResponse> loadQuestions(@Query(Constants.PARAM_AMOUNT) int amount,
-                                            @Query(Constants.PARAM_CATEGORY) int category,
-                                            @Query(Constants.PARAM_DIFFICULTY) String difficulty,
-                                            @Query(Constants.PARAM_TYPE) String type);
+                                                @Query(Constants.PARAM_CATEGORY) int category,
+                                                @Query(Constants.PARAM_DIFFICULTY) String difficulty,
+                                                @Query(Constants.PARAM_TYPE) String type);
 
     @GET(API_URL)
-    Call<RequestQuestionResponse> loadQuestionsOfAnyDiifficutly(@Query(Constants.PARAM_AMOUNT) int amount,
-                                                @Query(Constants.PARAM_CATEGORY) int category,
-                                                @Query(Constants.PARAM_TYPE) String type);
+    Call<RequestQuestionResponse> loadQuestionsOfAnyDifficulty(@Query(Constants.PARAM_AMOUNT) int amount,
+                                                               @Query(Constants.PARAM_CATEGORY) int category,
+                                                               @Query(Constants.PARAM_TYPE) String type);
 }
