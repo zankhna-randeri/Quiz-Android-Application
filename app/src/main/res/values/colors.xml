@@ -5,5 +5,9 @@
     <color name="colorAccent">#F1F1F1</color>
     <color name="color_layout_bg">#F1F1F1</color>
     <color name="color_yellow">#F9C451</color>
-    <color name="color_orange_dark">#f99b02</color>
+    <color name="color_dark_orange">#f99b02</color>
+    <color name="color_red">#FF5722</color>
+    <color name="color_dark_red">#E64A19</color>
+    <color name="color_green">#7CB342</color>
+    <color name="color_dark_green">#689F38</color>
 </resources>
