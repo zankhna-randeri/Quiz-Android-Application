@@ -13,4 +13,7 @@
     <string name="txt_category_geography">Geography</string>
     <string name="txt_category_history">History</string>
     <string name="txt_category_music">Music</string>
+
+    <!--Progress messages-->
+    <string name="message_loading_quiz">Loading Your Quiz</string>
 </resources>
