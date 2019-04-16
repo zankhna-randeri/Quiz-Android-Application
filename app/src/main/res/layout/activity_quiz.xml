@@ -12,72 +12,99 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" />
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_below="@id/toolbar">
 
-        <TextView
+        <include
+            layout="@layout/progress_app"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/lyt_quiz"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.7"
-            android:id="@+id/txt_question"
-            android:background="@drawable/bg_question"
-            android:gravity="center"
-            android:padding="@dimen/padding_8"
-            android:text="What is the defining characteristic of someone who is described as hirsute?"
-            android:textAllCaps="false"
-            android:textSize="@dimen/font_22"
-            android:textStyle="bold"
-            app:fontFamily="@font/font_body" />
+            android:orientation="vertical"
+            android:visibility="invisible"
+            android:weightSum="1">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:gravity="center">
-
-
-            <Button
-                android:id="@+id/btn_option1"
+            <TextView
+                android:id="@+id/txt_question"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_30"
-                android:layout_marginRight="@dimen/margin_30"
-                android:padding="@dimen/padding_5"
-                android:text="Disney"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:background="@drawable/bg_question"
+                android:gravity="center"
+                android:padding="@dimen/padding_8"
                 android:textAllCaps="false"
-                android:textSize="@dimen/font_24"
+                android:textSize="@dimen/font_20"
+                android:textStyle="bold"
                 app:fontFamily="@font/font_body" />
 
-            <Button
-                android:id="@+id/btn_option2"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_option1"
-                android:layout_marginLeft="@dimen/margin_30"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="@dimen/margin_30" />
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:gravity="center">
 
-            <Button
-                android:id="@+id/btn_option3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_option2"
-                android:layout_marginLeft="@dimen/margin_30"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="@dimen/margin_30" />
 
-            <Button
-                android:id="@+id/btn_option4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_option3"
-                android:layout_marginLeft="@dimen/margin_30"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="@dimen/margin_30" />
-        </RelativeLayout>
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btn_option1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_30"
+                    android:layout_marginRight="@dimen/margin_30"
+                    android:background="@drawable/option_normal"
+                    android:maxLines="2"
+                    android:padding="@dimen/padding_5"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    app:fontFamily="@font/font_body" />
+
+                <Button
+                    android:id="@+id/btn_option2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btn_option1"
+                    android:layout_marginLeft="@dimen/margin_30"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="@dimen/margin_30"
+                    android:background="@drawable/option_normal"
+                    android:maxLines="2"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    app:fontFamily="@font/font_body" />
+
+                <Button
+                    android:id="@+id/btn_option3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btn_option2"
+                    android:layout_marginLeft="@dimen/margin_30"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="@dimen/margin_30"
+                    android:background="@drawable/option_normal"
+                    android:maxLines="2"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    app:fontFamily="@font/font_body" />
+
+                <Button
+                    android:id="@+id/btn_option4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btn_option3"
+                    android:layout_marginLeft="@dimen/margin_30"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="@dimen/margin_30"
+                    android:background="@drawable/option_normal"
+                    android:maxLines="2"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/font_small"
+                    app:fontFamily="@font/font_body" />
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
 </RelativeLayout>
