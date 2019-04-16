@@ -9,6 +9,7 @@
 
     <ProgressBar
         android:layout_width="wrap_content"
+        android:indeterminateDrawable="@drawable/progress"
         android:layout_height="wrap_content" />
 
     <TextView
