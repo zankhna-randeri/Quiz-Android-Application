@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuizActivity">
+
+    <include
+        layout="@layout/toolbar_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:id="@+id/txt_question"
+            android:background="@drawable/bg_question"
+            android:gravity="center"
+            android:padding="@dimen/padding_8"
+            android:text="What is the defining characteristic of someone who is described as hirsute?"
+            android:textAllCaps="false"
+            android:textSize="@dimen/font_22"
+            android:textStyle="bold"
+            app:fontFamily="@font/font_body" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:gravity="center">
+
+
+            <Button
+                android:id="@+id/btn_option1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_30"
+                android:layout_marginRight="@dimen/margin_30"
+                android:padding="@dimen/padding_5"
+                android:text="Disney"
+                android:textAllCaps="false"
+                android:textSize="@dimen/font_24"
+                app:fontFamily="@font/font_body" />
+
+            <Button
+                android:id="@+id/btn_option2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_option1"
+                android:layout_marginLeft="@dimen/margin_30"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/margin_30" />
+
+            <Button
+                android:id="@+id/btn_option3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_option2"
+                android:layout_marginLeft="@dimen/margin_30"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/margin_30" />
+
+            <Button
+                android:id="@+id/btn_option4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_option3"
+                android:layout_marginLeft="@dimen/margin_30"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/margin_30" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
