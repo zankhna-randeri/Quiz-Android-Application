@@ -12,11 +12,13 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import sjsu.zankhna.quizapp.utils.Constants;
 
 public class CategoryActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Context activityContext;
+    private Unbinder unbinder;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -46,7 +48,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         activityContext = CategoryActivity.this;
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         setUpToolbar();
         generalKnowledge.setOnClickListener(this);
         books.setOnClickListener(this);
@@ -79,7 +81,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(activityContext, LoadQuizActivity.class);
+        Intent intent = new Intent(activityContext, QuizActivity.class);
         switch (v.getId()) {
             case R.id.btn_gk:
                 intent.putExtra(Constants.EXTRA_CATEGORY_ID, 9);
@@ -114,5 +116,11 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }
