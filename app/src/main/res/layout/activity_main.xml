@@ -27,7 +27,7 @@
             android:text="@string/txt_btn_play"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/font_medium"
+            android:textSize="@dimen/font_24"
             app:fontFamily="@font/font_body" />
 
         <Button
@@ -41,7 +41,7 @@
             android:text="@string/txt_btn_score"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/font_medium"
+            android:textSize="@dimen/font_24"
             app:fontFamily="@font/font_body" />
     </LinearLayout>
 
