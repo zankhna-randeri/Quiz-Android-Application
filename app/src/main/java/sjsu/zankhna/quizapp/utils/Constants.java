@@ -9,9 +9,7 @@ public class Constants {
     public static final String PARAM_TYPE = "type";
 
     // API request parameters value
-    public static int VALUE_AMOUNT = 10;
-    public static int VALUE_CATEGORY = 9;
-    public static String VALUE_DIFFICULTY = "easy";
+    public static final int VALUE_AMOUNT = 10;
     public static String VALUE_TYPE = "multiple";
 
     // API response code
