@@ -51,7 +51,7 @@
                     android:drawableTop="@mipmap/books"
                     android:drawablePadding="@dimen/padding_8"
                     android:padding="@dimen/padding_5"
-                    android:text="@string/txt_category_music"
+                    android:text="@string/txt_category_books"
                     android:textAllCaps="false"
                     android:textSize="@dimen/font_small"
                     android:textStyle="bold"
