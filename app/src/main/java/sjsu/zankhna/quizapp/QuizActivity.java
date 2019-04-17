@@ -1,5 +1,6 @@
 package sjsu.zankhna.quizapp;
 
+import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -198,15 +201,17 @@ public class QuizActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_option1, R.id.btn_option2, R.id.btn_option3, R.id.btn_option4})
     public void optionClick(Button option) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (option.getText().equals(currentQuestion.getCorrect_answer())) {
+        if (option.getText().equals(currentQuestion.getCorrect_answer())) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 option.setBackground(getResources().getDrawable(R.drawable.option_correct));
             } else {
-                option.setBackground(getResources().getDrawable(R.drawable.option_wrong));
-            }
-        } else {
-            if (option.getText().equals(currentQuestion.getCorrect_answer())) {
                 option.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_correct));
+            }
+            Log.d(TAG, "question Type : " + currentQuestion.getDifficulty());
+            quizModel.incrementScore();
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                option.setBackground(getResources().getDrawable(R.drawable.option_wrong));
             } else {
                 option.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_wrong));
             }
@@ -220,11 +225,29 @@ public class QuizActivity extends AppCompatActivity {
                     generateQuizData();
                 }
             }, 1000);
-
         } else {
-            //TODO: Show score to user
             displayScoreDialog();
         }
     }
 
+    private void displayScoreDialog() {
+        final Dialog dialog = new Dialog(activityContext);
+        dialog.setContentView(R.layout.dialog_score);
+        dialog.setCanceledOnTouchOutside(false);
+        Window window = dialog.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        Button ok = dialog.findViewById(R.id.btn_ok);
+        TextView message = dialog.findViewById(R.id.txt_dialog_message);
+        message.setText(
+                String.format(Locale.getDefault(),
+                        getString(R.string.txt_score_achieved) + " %d",
+                        quizModel.getScore()));
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 }
