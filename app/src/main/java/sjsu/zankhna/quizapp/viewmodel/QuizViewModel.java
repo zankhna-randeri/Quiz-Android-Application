@@ -5,28 +5,37 @@ import android.arch.lifecycle.ViewModel;
 import java.util.ArrayList;
 
 import sjsu.zankhna.quizapp.model.Question;
+import sjsu.zankhna.quizapp.utils.Constants;
 
 public class QuizViewModel extends ViewModel {
 
-    private int score;
+    private int score = 0;
     private int currentQueIndex = -1;
     private ArrayList<Question> questions;
+    private Question currentQuestion;
 
     public int getScore() {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public void incrementScore() {
-        score = score + 1;
+        switch (currentQuestion.getDifficulty()) {
+            case Constants.DIFFICULTY_EASY:
+                score = score + 1;
+                break;
+            case Constants.DIFFICULTY_MEDIUM:
+                score = score + 3;
+                break;
+            case Constants.DIFFICULTY_HARD:
+                score = score + 5;
+                break;
+        }
     }
 
     public Question nextQuestion() {
         currentQueIndex++;
-        return questions.get(currentQueIndex);
+        currentQuestion = questions.get(currentQueIndex);
+        return currentQuestion;
     }
 
     public int getCurrentQueIndex() {
