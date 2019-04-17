@@ -24,4 +24,8 @@ public class Constants {
     public static final String RESPONSE_QUESTION_SERVICE = "responseQuestionService";
     public static final String PAYLOAD_QUESTION_SERVICE = "payloadQuestionService";
     public static String EXTRA_CATEGORY_ID;
+
+    public static final String DIFFICULTY_EASY = "easy";
+    public static final String DIFFICULTY_MEDIUM = "medium";
+    public static final String DIFFICULTY_HARD = "hard";
 }
