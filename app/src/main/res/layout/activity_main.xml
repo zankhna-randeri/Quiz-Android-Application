@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:background="@drawable/app_button_selector"
             android:padding="@dimen/padding_20"
-            android:text="@string/txt_btn_score"
+            android:text="@string/txt_your_score"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="@dimen/font_24"
