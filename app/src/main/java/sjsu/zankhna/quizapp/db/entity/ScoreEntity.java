@@ -1,6 +1,7 @@
 package sjsu.zankhna.quizapp.db.entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
@@ -15,6 +16,14 @@ public class ScoreEntity {
     private String category;
 
 
+    public ScoreEntity(int id, Date date, int score, String category) {
+        this.id = id;
+        this.date = date;
+        this.score = score;
+        this.category = category;
+    }
+
+    @Ignore
     public ScoreEntity(int score, String category) {
         this.date = new Date();
         this.score = score;
