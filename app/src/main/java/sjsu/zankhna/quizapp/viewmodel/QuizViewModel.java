@@ -1,18 +1,24 @@
 package sjsu.zankhna.quizapp.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 
 import sjsu.zankhna.quizapp.model.Question;
 import sjsu.zankhna.quizapp.utils.Constants;
 
-public class QuizViewModel extends ViewModel {
+public class QuizViewModel extends AndroidViewModel {
 
     private int score = 0;
     private int currentQueIndex = -1;
     private ArrayList<Question> questions;
     private Question currentQuestion;
+
+    public QuizViewModel(@NonNull Application application) {
+        super(application);
+    }
 
     public int getScore() {
         return score;
@@ -49,4 +55,6 @@ public class QuizViewModel extends ViewModel {
     public int totalQuestions() {
         return questions.size();
     }
+
+
 }
