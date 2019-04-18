@@ -32,16 +32,21 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import sjsu.zankhna.quizapp.db.entity.ScoreEntity;
 import sjsu.zankhna.quizapp.model.Question;
 import sjsu.zankhna.quizapp.services.RequestQuestionService;
 import sjsu.zankhna.quizapp.utils.Constants;
 import sjsu.zankhna.quizapp.utils.NetworkHelper;
 import sjsu.zankhna.quizapp.viewmodel.QuizViewModel;
+import sjsu.zankhna.quizapp.viewmodel.ScoreViewModel;
 
 public class QuizActivity extends AppCompatActivity {
 
     private Context activityContext;
+
     private QuizViewModel quizModel;
+    private ScoreViewModel scoreModel;
+
     private Question currentQuestion;
     private Unbinder unbinder;
     private final Handler handler = new Handler();
@@ -60,7 +65,7 @@ public class QuizActivity extends AppCompatActivity {
     TextView title;
 
     @BindView(R.id.txt_question)
-    TextView question;
+    TextView questionView;
 
     @BindViews({R.id.btn_option1, R.id.btn_option2, R.id.btn_option3, R.id.btn_option4})
     List<Button> optionViews;
@@ -81,7 +86,8 @@ public class QuizActivity extends AppCompatActivity {
         unbinder = ButterKnife.bind(this);
 
         activityContext = QuizActivity.this;
-        quizModel = ViewModelProviders.of(this).get(QuizViewModel.class);
+        initViewModel();
+
 
         getIntentData(getIntent());
         setUpToolbar();
@@ -97,6 +103,11 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             // TODO: Show appropriate message
         }
+    }
+
+    private void initViewModel() {
+        quizModel = ViewModelProviders.of(this).get(QuizViewModel.class);
+        scoreModel = ViewModelProviders.of(this).get(ScoreViewModel.class);
     }
 
     @Override
@@ -167,8 +178,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private void displayQuiz() {
 
-        Log.d(TAG, "question: " + currentQuestion.getQuestion());
-        question.setText(Html.fromHtml(currentQuestion.getQuestion()).toString());
+        Log.d(TAG, "questionView: " + currentQuestion.getQuestion());
+        questionView.setText(Html.fromHtml(currentQuestion.getQuestion()).toString());
 
         for (int i = 0; i < options.size(); i++) {
             optionViews.get(i).setText(Html.fromHtml(options.get(i)).toString());
@@ -207,7 +218,7 @@ public class QuizActivity extends AppCompatActivity {
             } else {
                 option.setBackgroundDrawable(getResources().getDrawable(R.drawable.option_correct));
             }
-            Log.d(TAG, "question Type : " + currentQuestion.getDifficulty());
+            Log.d(TAG, "questionView Type : " + currentQuestion.getDifficulty());
             quizModel.incrementScore();
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -217,7 +228,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
 
-        // Wait for 1 second before loading new question
+        // Wait for 1 second before loading new questionView
         if (quizModel.getCurrentQueIndex() < quizModel.totalQuestions() - 1) {
             handler.postDelayed(new Runnable() {
                 @Override
@@ -245,9 +256,16 @@ public class QuizActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                addScore();
                 dialog.dismiss();
             }
         });
         dialog.show();
+    }
+
+    private void addScore() {
+        ScoreEntity score = new ScoreEntity(quizModel.getScore(),
+                currentQuestion.getCategory());
+        scoreModel.addScore(score);
     }
 }
