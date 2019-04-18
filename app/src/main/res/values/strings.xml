@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Quiz Application</string>
     <string name="txt_btn_play">Let\'s Play!</string>
-    <string name="txt_btn_score">Your Scores</string>
+    <string name="txt_your_score">Your Scores</string>
     <string name="txt_select_category">Select Category</string>
     <string name="txt_score">Score</string>
     <string name="txt_ok">Ok</string>
