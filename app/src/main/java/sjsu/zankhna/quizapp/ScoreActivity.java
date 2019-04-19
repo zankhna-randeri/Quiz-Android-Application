@@ -3,13 +3,12 @@ package sjsu.zankhna.quizapp;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -24,8 +23,6 @@ import sjsu.zankhna.quizapp.db.entity.ScoreEntity;
 import sjsu.zankhna.quizapp.viewmodel.ScoreViewModel;
 
 public class ScoreActivity extends AppCompatActivity {
-
-    private final String TAG = "ScoreActivity";
 
     private Context activityContext;
     private Unbinder unbinder;
