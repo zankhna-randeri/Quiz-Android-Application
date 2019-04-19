@@ -1,5 +1,6 @@
 package sjsu.zankhna.quizapp.db.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -16,6 +17,6 @@ public interface ScoreDao {
     void insertScore(ScoreEntity score);
 
     @Query("SELECT * from score ORDER BY date DESC")
-    List<ScoreEntity> getAllScores();
+    LiveData<List<ScoreEntity>> getAllScores();
 
 }

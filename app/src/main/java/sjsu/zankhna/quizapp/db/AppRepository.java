@@ -1,8 +1,8 @@
 package sjsu.zankhna.quizapp.db;
 
+import android.arch.lifecycle.LiveData;
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -11,7 +11,7 @@ import sjsu.zankhna.quizapp.db.entity.ScoreEntity;
 
 public class AppRepository {
 
-    private List<ScoreEntity> scores;
+    private LiveData<List<ScoreEntity>> scores;
     private QuizDatabase quizDb;
     private Executor executor = Executors.newSingleThreadExecutor();
 
@@ -24,20 +24,17 @@ public class AppRepository {
         return repoInstance;
     }
 
-
-    private AppRepository(Context context) {
-        scores = new ArrayList<>();
-        quizDb = QuizDatabase.getInstance(context);
+    public LiveData<List<ScoreEntity>> getScores() {
+        return scores;
     }
 
-    public List<ScoreEntity> getScores() {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                scores = quizDb.scoreDao().getAllScores();
-            }
-        });
-        return scores;
+    private AppRepository(Context context) {
+        quizDb = QuizDatabase.getInstance(context);
+        scores = getAllScores();
+    }
+
+    public LiveData<List<ScoreEntity>> getAllScores() {
+        return quizDb.scoreDao().getAllScores();
     }
 
     public void addScore(final ScoreEntity score) {
