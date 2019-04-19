@@ -8,6 +8,7 @@
     <dimen name="padding_8">8dp</dimen>
     <dimen name="padding_20">20dp</dimen>
 
+    <dimen name="margin_8">8dp</dimen>
     <dimen name="margin_15">15dp</dimen>
     <dimen name="margin_30">30dp</dimen>
 
