@@ -31,6 +31,12 @@ public class AppRepository {
     }
 
     public List<ScoreEntity> getScores() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                scores = quizDb.scoreDao().getAllScores();
+            }
+        });
         return scores;
     }
 
