@@ -20,12 +20,14 @@ public class ScoreViewModel extends AndroidViewModel {
         scores = repository.getScores();
     }
 
-    public AppRepository getRepository() {
-        return repository;
-    }
-
-
     public void addScore(ScoreEntity score) {
         repository.addScore(score);
+    }
+
+    //    public List<ScoreEntity> getScores() {
+//        return scores;
+//    }
+    public List<ScoreEntity> getScores() {
+        return repository.getScores();
     }
 }
