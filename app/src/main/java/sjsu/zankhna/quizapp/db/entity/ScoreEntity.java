@@ -24,8 +24,8 @@ public class ScoreEntity {
     }
 
     @Ignore
-    public ScoreEntity(int score, String category) {
-        this.date = new Date();
+    public ScoreEntity(Date date, int score, String category) {
+        this.date = date;
         this.score = score;
         this.category = category;
     }
