@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -246,7 +247,9 @@ public class QuizActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_score);
         dialog.setCanceledOnTouchOutside(false);
         Window window = dialog.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        if (window != null) {
+            window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        }
         Button ok = dialog.findViewById(R.id.btn_ok);
         TextView message = dialog.findViewById(R.id.txt_dialog_message);
         message.setText(
@@ -264,7 +267,9 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void addScore() {
-        ScoreEntity score = new ScoreEntity(quizModel.getScore(),
+        ScoreEntity score = new ScoreEntity(
+                new Date(),
+                quizModel.getScore(),
                 currentQuestion.getCategory());
         scoreModel.addScore(score);
     }
