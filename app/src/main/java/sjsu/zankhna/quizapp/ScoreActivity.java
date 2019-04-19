@@ -1,7 +1,9 @@
 package sjsu.zankhna.quizapp;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,20 +49,37 @@ public class ScoreActivity extends AppCompatActivity {
 
         activityContext = ScoreActivity.this;
         unbinder = ButterKnife.bind(this);
-        scoreViewModel = ViewModelProviders.of(this).get(ScoreViewModel.class);
-
         setUpToolbar();
         initScoreView();
+        initViewModel();
+    }
+
+    private void initViewModel() {
+        Observer<List<ScoreEntity>> scoreObserver = new Observer<List<ScoreEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<ScoreEntity> scoreEntities) {
+                scores.clear();
+                if (scoreEntities != null) {
+                    scores.addAll(scoreEntities);
+                }
+                if (adpScore == null) {
+                    adpScore = new ScoreAdapter(scores, activityContext);
+                    scoreView.setAdapter(adpScore);
+                } else {
+                    adpScore.notifyDataSetChanged();
+                }
+            }
+        };
+        scoreViewModel = ViewModelProviders.of(this).get(ScoreViewModel.class);
+        scoreViewModel.getScores().observe(this, scoreObserver);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-            default:
-                return false;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        } else {
+            return false;
         }
         return false;
     }
@@ -77,12 +96,6 @@ public class ScoreActivity extends AppCompatActivity {
 
     private void initScoreView() {
         scoreView.setLayoutManager(new LinearLayoutManager(activityContext));
-        scores = scoreViewModel.getScores();
-        if (scores.size() > 0) {
-            Log.d(TAG, String.format("initScoreView() received: %d scores", scores.size()));
-            adpScore = new ScoreAdapter(scores, activityContext);
-            scoreView.setAdapter(adpScore);
-        }
     }
 
     @Override
