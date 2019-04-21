@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".CategoryActivity" />
         <activity android:name=".ScoreActivity" />
 
         <service
@@ -28,6 +28,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuizActivity" />
+
+        <!--<activity android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity" />-->
+        <!--<activity android:name="com.google.android.gms.oss.licenses.OssLicensesActivity" />-->
+
     </application>
 
 </manifest>
