@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.btn_score)
     Button score;
 
+//    @BindView(R.id.btn_license)
+//    Button licenses;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setUpToolbar();
         play.setOnClickListener(this);
         score.setOnClickListener(this);
+//        licenses.setOnClickListener(this);
     }
 
     private void setUpToolbar() {
@@ -72,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_score:
                 startActivity(new Intent(activityContext, ScoreActivity.class));
                 break;
+//            case R.id.btn_license:
+//                startActivity(new Intent(this, OssLicensesActivity.class));
+//                break;
         }
     }
 
