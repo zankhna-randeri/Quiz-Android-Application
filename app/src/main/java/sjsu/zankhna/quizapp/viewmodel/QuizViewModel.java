@@ -52,6 +52,10 @@ public class QuizViewModel extends AndroidViewModel {
         this.questions = questions;
     }
 
+    public ArrayList<Question> getQuestions() {
+        return questions;
+    }
+
     public int totalQuestions() {
         return questions.size();
     }
