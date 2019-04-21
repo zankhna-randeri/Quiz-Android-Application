@@ -92,19 +92,26 @@ public class QuizActivity extends AppCompatActivity {
 
         getIntentData(getIntent());
         setUpToolbar();
-        setUpProgress();
 
         isNetworkConnected = NetworkHelper.hasNetworkAccess(this);
         if (isNetworkConnected) {
             // TODO: Intent service call
 //            Intent intent = new Intent(this, RequestQuestionService.class);
 //            startService(intent);
-            RequestQuestionService.startActionRequestQuestions(QuizActivity.this,
-                    categoryId);
+            if (quizModel.getQuestions() == null || quizModel.getQuestions().size() == 0) {
+                setUpProgress();
+                RequestQuestionService.startActionRequestQuestions(QuizActivity.this,
+                        categoryId);
+            } else {
+                handleOrientation();
+            }
         } else {
-            // TODO: Show appropriate message
+            Toast.makeText(activityContext, getString(R.string.message_no_network), Toast.LENGTH_LONG)
+                    .show();
         }
     }
+
+
 
     private void initViewModel() {
         quizModel = ViewModelProviders.of(this).get(QuizViewModel.class);
@@ -148,6 +155,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void setUpProgress() {
+        progressLayout.setVisibility(View.VISIBLE);
         progressMessage.setText(getString(R.string.message_loading_quiz));
     }
 
@@ -165,6 +173,20 @@ public class QuizActivity extends AppCompatActivity {
             generateQuizData();
         }
     };
+
+    private void handleOrientation() {
+        progressLayout.setVisibility(View.INVISIBLE);
+        quizLayout.setVisibility(View.VISIBLE);
+        int index = quizModel.getCurrentQueIndex();
+        currentQuestion = quizModel.getQuestions().get(index);
+        options = new ArrayList<>();
+        options.add(currentQuestion.getCorrect_answer());
+        for (String incorrectAnswer : currentQuestion.getIncorrect_answers()) {
+            options.add(incorrectAnswer);
+        }
+        Collections.shuffle(options);
+        displayQuiz();
+    }
 
     private void generateQuizData() {
         currentQuestion = quizModel.nextQuestion();
@@ -261,6 +283,7 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 addScore();
                 dialog.dismiss();
+                finish();
             }
         });
         dialog.show();
