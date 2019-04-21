@@ -6,6 +6,7 @@
     <string name="txt_score">Score</string>
     <string name="txt_ok">Ok</string>
     <string name="txt_score_achieved">You scored:</string>
+    <string name="txt_license">Open Source Licenses</string>
 
     <!--Categories-->
     <string name="txt_category_gk">General \nKnowledge</string>
@@ -19,5 +20,6 @@
 
     <!--Progress messages-->
     <string name="message_loading_quiz">Loading Your Quiz</string>
+    <string name="message_no_network">No Internet Connection !!</string>
 
 </resources>
