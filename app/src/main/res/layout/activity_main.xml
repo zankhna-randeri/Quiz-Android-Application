@@ -43,6 +43,20 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/font_24"
             app:fontFamily="@font/font_body" />
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_license"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="@dimen/margin_15"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/app_button_selector"-->
+            <!--android:padding="@dimen/padding_20"-->
+            <!--android:text="@string/txt_license"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textSize="@dimen/font_24"-->
+            <!--app:fontFamily="@font/font_body" />-->
     </LinearLayout>
 
 </RelativeLayout>
