@@ -29,9 +29,6 @@
         </activity>
         <activity android:name=".QuizActivity" />
 
-        <!--<activity android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity" />-->
-        <!--<activity android:name="com.google.android.gms.oss.licenses.OssLicensesActivity" />-->
-
     </application>
 
 </manifest>
